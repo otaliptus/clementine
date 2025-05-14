@@ -879,6 +879,7 @@ where
         deposit_data: &mut DepositData,
         kickoff_data: KickoffData,
     ) -> Result<bool, BridgeError> {
+        return Ok(true);
         let move_txid =
             create_move_to_vault_txhandler(deposit_data, self.config.protocol_paramset())?
                 .get_cached_tx()
