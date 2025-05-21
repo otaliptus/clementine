@@ -39,6 +39,11 @@ pub fn create_watchtower_challenge_txhandler(
         );
     let mut current_idx = 0;
     while current_idx + 80 < paramset.watchtower_challenge_bytes {
+        tracing::warn!(
+            "current_idx: {}, wt taproot bytes: {:?}",
+            current_idx,
+            commit_data[current_idx..current_idx + 32].to_vec()
+        );
         // encode next 32 bytes of data as script pubkey of taproot utxo
         let data = PushBytesBuf::try_from(commit_data[current_idx..current_idx + 32].to_vec())
             .map_err(|e| {
